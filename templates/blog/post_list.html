@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Blog{% endblock %}
+{% block content %}
+<section class="pagina">
+  <h2>Últimos posts</h2>
+  {% for post in posts %}
+    <article style="margin-bottom:2rem; border-bottom:1px solid #ccc; padding-bottom:1rem;">
+      <h3>
+        <a href="{% url 'blog:post_detail' slug=post.slug %}">
+          {{ post.title }}
+        </a>
+      </h3>
+
+      <small>
+        Publicado {{ post.created_at|date:"d/m/Y H:i" }}
+        {% if post.author %} por {{ post.author.get_username }}{% endif %}
+      </small>
+
+      {# Mostrar portada si existe #}
+      {% if post.image %}
+        <div style="margin:12px 0;">
+          <img
+            src="{{ post.image.url }}"
+            alt="{{ post.title }}"
+            style="max-width:280px; height:auto; border-radius:8px;">
+        </div>
+
+      {# Si no hay portada, mostrar la primera de las imágenes extra #}
+      {% elif post.images.first %}
+        <div style="margin:12px 0;">
+          <img
+            src="{{ post.images.first.image.url }}"
+            alt="{{ post.title }}"
+            style="max-width:280px; height:auto; border-radius:8px;"
+          >
+        </div>
+      {% endif %}
+      <p>{{ post.content|truncatewords:25 }}</p>
+      <a href="{% url 'blog:post_detail' slug=post.slug %}">Leer más →</a>
+    </article>
+  {% empty %}
+    <p>No hay posts publicados todavía.</p>
+  {% endfor %}
+</section>
+{% endblock %}

@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Joaquín Iñaki Piñeiro - Portfolio{% endblock %}
+{% block content %}
+
+  <div id="preloader">
+    <div class="mensaje-bienvenida">¡Bienvenido a mi portfolio!</div>
+  </div>
+
+  <section id="bienvenida" class="pagina bienvenida">
+    <h1>Explorá mi trabajo</h1>
+    <p>Acá vas a encontrar quién soy, los proyectos que desarrollé y cómo podés contactarme.</p>
+  </section>
+
+  <section id="sobre-mi" class="pagina sobre-mi">
+    <div class="contenido-sobre-mi" style="display: flex; align-items: center; gap: 40px; flex-wrap: wrap;">
+      <img src="{% static 'img/Chrollo.jpg' %}" alt="Joaquín Iñaki Piñeiro" class="perfil" style="flex-shrink: 0; max-width: 200px;" />
+      <div class="texto" style="flex: 1;">
+        <h1>Joaquín Iñaki Piñeiro</h1>
+        <p>Soy un estudiante del Instituto Industrial Luis A. Huergo, especializado en programación. Sé usar los lenguajes de programación básicos.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="habilidades" class="pagina">
+    <h2>Habilidades</h2>
+    <ul class="habilidades">
+      <li>💻 HTML, CSS</li>
+      <li>🛠 Git y GitHub</li>
+      <li>👨‍💻 Python</li>
+    </ul>
+  </section>
+
+  <section id="proyectos" class="pagina">
+    <h2>Proyectos</h2>
+
+    <div class="proyecto">
+      <h3>Proyecto 1: Space Invaders</h3>
+      <p>Recreación del videojuego famoso "Space Invaders", donde sos una nave que tiene que matar aliens.</p>
+      <a href="https://github.com/Joaquin11marzo/space-invaders" target="_blank">
+        <img src="{% static 'img/space.png' %}" alt="Space Invaders" />
+      </a>
+    </div>
+
+    <div class="proyecto">
+      <h3>Proyecto 2: Palabras Huergo</h3>
+      <p>Un juego que recrea el conocido juego de "PasaPalabras", con diferentes juegos como adiviná la bandera, adiviná el personaje, adiviná el famoso, etc.</p>
+      <a href="https://github.com/Joaquin11marzo/PasaPalabras" target="_blank">
+        <img src="{% static 'img/pasapalabra.png' %}" alt="Palabras Huergo" />
+      </a>
+    </div>
+
+    <div class="proyecto">
+      <h3>Proyecto 3: Portfolio</h3>
+      <p>Un portfolio donde podés ver información acerca de mí.</p>
+      <a href="https://github.com/Joaquin11marzo/portfolio" target="_blank">
+        <img src="{% static 'img/portfolio.png' %}" alt="Portfolio Personal" />
+      </a>
+    </div>
+  </section>
+
+  <section id="contacto" class="pagina">
+    <h2>Contacto</h2>
+    <p>Puedes contactarme desde:</p>
+    <p>
+      📧 <strong>Email:</strong> jpineiro@alumno.huergo.edu.ar<br>
+      💻 <strong>GitHub:</strong> <a href="https://github.com/Joaquin11marzo" target="_blank">github.com/Joaquin11marzo</a>
+    </p>
+  </section>
+
+  <script>
+    window.addEventListener("load", () => {
+      const preloader = document.getElementById("preloader");
+      setTimeout(() => {
+        if (preloader) preloader.style.display = "none";
+      }, 3000);
+    });
+  </script>
+{% endblock %}

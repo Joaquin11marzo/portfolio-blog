@@ -1,0 +1,44 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{% block title %}Portfolio{% endblock %}</title>
+  <link rel="stylesheet" href="{% static 'css/styles.css' %}" />
+  <link rel="icon" type="image/png" href="{% static 'img/favicon1.png' %}">
+  <style>html{scroll-behavior:smooth;}</style>
+</head>
+<body>
+  <header>
+    <nav class="navbar">
+      <ul class="nav-links">
+        <li><a href="{% url 'home' %}#sobre-mi">Sobre mí</a></li>
+        <li><a href="{% url 'home' %}#habilidades">Habilidades</a></li>
+        <li><a href="{% url 'home' %}#proyectos">Proyectos</a></li>
+        <li><a href="{% url 'home' %}#contacto">Contacto</a></li>
+        <li><a href="{% url 'blog:post_list' %}">Blog</a></li>
+      </ul>
+      <button id="modo-toggle" class="modo-boton">Modo Oscuro</button>
+    </nav>
+  </header>
+
+  <main>
+    {% block content %}{% endblock %}
+  </main>
+
+  <footer>
+    <p>&copy; Joaquín Iñaki Piñeiro {% now "Y" %}</p>
+  </footer>
+
+  <script>
+    const toggleBtn = document.getElementById("modo-toggle");
+    if (toggleBtn) {
+      toggleBtn.addEventListener("click", function () {
+        document.body.classList.toggle("oscuro");
+        toggleBtn.textContent = document.body.classList.contains("oscuro") ? "Modo Claro" : "Modo Oscuro";
+      });
+    }
+  </script>
+</body>
+</html>

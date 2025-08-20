@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}{{ post.title }} - Blog{% endblock %}
+{% block content %}
+<section class="pagina">
+  <article>
+    <h2>{{ post.title }}</h2>
+    <small>
+      Publicado {{ post.created_at|date:"d/m/Y H:i" }}
+      {% if post.author %} por {{ post.author.get_username }}{% endif %}
+    </small>
+
+    {# Imagen principal (portada) más grande #}
+    {% if post.image %}
+    <div style="margin-top:12px; text-align:center;">
+      <img src="{{ post.image.url }}" alt="{{ post.title }}"
+          style="max-width:460px; width:100%; height:auto; border-radius:8px;">
+    </div>
+    {% endif %}
+
+    {# Galería de imágenes adicionales #}
+    {% if post.images.all %}
+    <div class="post-gallery" style="display:flex; flex-wrap:wrap; justify-content:center; gap:12px; margin-top:12px;">
+      {% for img in post.images.all %}
+      <figure style="margin:0;">
+        <img src="{{ img.image.url }}" alt="{{ post.title }}"
+            style="max-width:220px; height:auto; border-radius:8px;">
+      </figure>
+      {% endfor %}
+    </div>
+    {% endif %}
+
+    <div style="margin-top:14px; white-space:pre-wrap;">{{ post.content }}</div>
+  </article>
+
+  <hr/>
+
+  <section>
+    <h3>Comentarios ({{ post.comments.count }})</h3>
+    {% for c in post.comments.all %}
+    <div style="background:#e8ecf1; padding:10px; border-radius:8px; margin-bottom:8px;">
+      <strong>{{ c.name }}</strong>
+      <small>{{ c.created_at|date:"d/m/Y H:i" }}</small>
+      <p style="margin:6px 0 0;">{{ c.body }}</p>
+    </div>
+    {% empty %}
+    <p>Sin comentarios aún.</p>
+    {% endfor %}
+  </section>
+
+  <section style="margin-top:1rem;">
+    <h3>Dejar un comentario</h3>
+    <form action="" method="post">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button type="submit">Publicar comentario</button>
+    </form>
+  </section>
+</section>
+{% endblock %}
