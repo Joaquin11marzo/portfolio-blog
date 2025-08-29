@@ -237,6 +237,7 @@ footer {
   background-color: #1c1c1c;
 }
 
+/* PRELOADER CORREGIDO - Controlado por JavaScript */
 #preloader {
   position: fixed;
   top: 0;
@@ -251,7 +252,9 @@ footer {
   z-index: 2000;
   font-size: 2rem;
   font-weight: bold;
-  animation: fadeOut 1s ease 2.5s forwards;
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 1s ease, visibility 1s ease;
 }
 
 .mensaje-bienvenida {
@@ -270,16 +273,139 @@ footer {
   100% { opacity: 0; }
 }
 
-@keyframes fadeOut {
-  to {
-    opacity: 0;
-    visibility: hidden;
-  }
-}
-
+/* Estilos mejorados para el blog */
 .post-gallery img {
     width: 300px;
     height: 200px;
     object-fit: cover;
     border-radius: 8px;
+}
+
+/* Estilos para posts del blog */
+.post-item {
+    background-color: #e8ecf1;
+    padding: 30px;
+    border-radius: 12px;
+    margin-bottom: 30px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.post-item:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+}
+
+.post-title {
+    color: #1e2a38;
+    text-decoration: none;
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+    display: block;
+    transition: color 0.3s;
+}
+
+.post-title:hover {
+    color: #3e8ed0;
+}
+
+.post-date {
+    color: #666;
+    font-size: 0.9rem;
+    margin-bottom: 15px;
+    display: block;
+}
+
+.post-excerpt {
+    color: #333;
+    line-height: 1.6;
+    margin-bottom: 15px;
+}
+
+.post-read-more {
+    color: #3e8ed0;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s;
+}
+
+.post-read-more:hover {
+    color: #5aa1e3;
+    text-decoration: underline;
+}
+
+.oscuro .post-item {
+    background-color: #2a2a2a;
+    border: 1px solid #404040;
+}
+
+.oscuro .post-item:hover {
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+.oscuro .post-title {
+    color: #ffffff;
+}
+
+.oscuro .post-title:hover {
+    color: #7dd3fc;
+}
+
+.oscuro .post-date {
+    color: #b0b0b0;
+}
+
+.oscuro .post-excerpt {
+    color: #e0e0e0;
+}
+
+.oscuro .post-read-more {
+    color: #7dd3fc;
+}
+
+.oscuro .post-read-more:hover {
+    color: #38bdf8;
+}
+
+.oscuro a {
+    color: #7dd3fc;
+}
+
+.oscuro a:hover {
+    color: #38bdf8;
+}
+
+.oscuro h1 a,
+.oscuro h2 a,
+.oscuro h3 a {
+    color: #ffffff;
+}
+
+.oscuro h1 a:hover,
+.oscuro h2 a:hover,
+.oscuro h3 a:hover {
+    color: #7dd3fc;
+}
+
+.oscuro .meta-info {
+    color: #b0b0b0;
+}
+
+.oscuro .post-content {
+    color: #e0e0e0;
+}
+
+.oscuro .blog-container {
+    background-color: #1a1a1a;
+    padding: 20px;
+    border-radius: 12px;
+}
+
+.oscuro .post-content a {
+    color: #7dd3fc;
+}
+
+.oscuro .post-content a:hover {
+    color: #38bdf8;
 }

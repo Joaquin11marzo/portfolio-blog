@@ -7,7 +7,11 @@
   <title>{% block title %}Portfolio{% endblock %}</title>
   <link rel="stylesheet" href="{% static 'css/styles.css' %}" />
   <link rel="icon" type="image/png" href="{% static 'img/favicon1.png' %}">
-  <style>html{scroll-behavior:smooth;}</style>
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+  </style>
 </head>
 <body>
   <header>
@@ -33,12 +37,22 @@
 
   <script>
     const toggleBtn = document.getElementById("modo-toggle");
+
+    if (localStorage.getItem("modo") === "oscuro") {
+      document.body.classList.add("oscuro");
+      if (toggleBtn) toggleBtn.textContent = "Modo Claro";
+    }
+
     if (toggleBtn) {
       toggleBtn.addEventListener("click", function () {
-        document.body.classList.toggle("oscuro");
-        toggleBtn.textContent = document.body.classList.contains("oscuro") ? "Modo Claro" : "Modo Oscuro";
+        const esOscuro = document.body.classList.toggle("oscuro");
+        toggleBtn.textContent = esOscuro ? "Modo Claro" : "Modo Oscuro";
+        localStorage.setItem("modo", esOscuro ? "oscuro" : "claro");
       });
     }
   </script>
+
+  {% block scripts %}
+  {% endblock %}
 </body>
 </html>

@@ -68,12 +68,28 @@
     </p>
   </section>
 
-  <script>
-    window.addEventListener("load", () => {
-      const preloader = document.getElementById("preloader");
+{% endblock %}
+
+{% block scripts %}
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const preloader = document.getElementById("preloader");
+    
+    if (!preloader) return;
+    const hasSeenPreloader = sessionStorage.getItem('preloaderShown');
+    
+    if (hasSeenPreloader) {
+      preloader.style.display = "none";
+    } else {
       setTimeout(() => {
-        if (preloader) preloader.style.display = "none";
+        preloader.style.opacity = "0";
+        preloader.style.visibility = "hidden";
+        sessionStorage.setItem('preloaderShown', 'true');
+        setTimeout(() => {
+          preloader.style.display = "none";
+        }, 1000);
       }, 3000);
-    });
-  </script>
+    }
+  });
+</script>
 {% endblock %}
